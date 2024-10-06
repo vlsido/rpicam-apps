@@ -45,6 +45,7 @@ if opencv_dep.found()
     opencv_postproc_src = files([
         'sobel_cv_stage.cpp',
         'face_detect_cv_stage.cpp',
+        'face_recognition_stage.cpp',
         'annotate_cv_stage.cpp',
         'plot_pose_cv_stage.cpp',
         'object_detect_draw_cv_stage.cpp',
@@ -54,6 +55,7 @@ if opencv_dep.found()
     postproc_assets += files([
         assets_dir / 'sobel_cv.json',
         assets_dir / 'face_detect_cv.json',
+        assets_dir / 'face_recognition_cv.json',
         assets_dir / 'annotate_cv.json',
     ])
 

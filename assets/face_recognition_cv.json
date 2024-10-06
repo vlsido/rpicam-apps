@@ -1,0 +1,13 @@
+{
+    "face_recognition": {
+        "cascade_name": "/usr/local/share/opencv4/haarcascades/haarcascade_frontalface_alt.xml",
+        "embeddings_file": "face_embeddings.xml",
+        "labels_file": "labels.txt",
+        "scaling_factor": 1.1,
+        "min_neighbors": 3,
+        "min_size": 32,
+        "max_size": 256,
+        "refresh_rate": 5,
+        "confidence_threshold": 80.0
+    }
+}
