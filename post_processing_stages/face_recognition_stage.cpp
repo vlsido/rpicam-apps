@@ -63,6 +63,7 @@ private:
 	std::vector<cv::Rect> faces_;
 	CascadeClassifier cascade_;
 	std::string last_recognized_face_;
+	std::chrono::milliseconds last_recognized_face_timestamp_;
 	Ptr<LBPHFaceRecognizer> recognizer_;
 	std::string cascadeName_;
 	std::string embeddings_file_;
@@ -167,6 +168,7 @@ bool FaceRecognitionCvStage::Process(CompletedRequestPtr &completed_request)
 
 	completed_request->post_process_metadata.Set("last_recognized_face", last_recognized_face_);
 
+	completed_request->post_process_metadata.Set("last_recognized_face_timestamp", last_recognized_face_timestamp_);
 	if (draw_features_)
 	{
 		BufferWriteSync w(app_, completed_request->buffers[full_stream_]);
@@ -209,6 +211,8 @@ void FaceRecognitionCvStage::detectAndRecognizeFeatures(CascadeClassifier &casca
 		if (recognized_face.label != "Unknown")
 		{
 			last_recognized_face_ = recognized_face.label;
+			last_recognized_face_timestamp_ = std::chrono::duration_cast<std::chrono::milliseconds>(
+				std::chrono::system_clock::now().time_since_epoch());
 		}
 	}
 	std::unique_lock<std::mutex> lock(face_mutex_);

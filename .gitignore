@@ -1,2 +1,13 @@
 build
 *~
+
+# Ignore the IDEs directory
+.vscode/
+.idea/
+
+# Ignore the .git directory
+.git/
+
+.github/
+
+.cache/
